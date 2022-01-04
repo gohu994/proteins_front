@@ -17,12 +17,12 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-
                 <h1>Proteins graph</h1>
+            </header>
+            <body className="App-body">
                 <Recherche options={options} setUrl={setUrl}/>
                 <GraphVisu url={url}/>
-
-            </header>
+            </body>
         </div>
     );
 }
