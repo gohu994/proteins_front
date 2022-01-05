@@ -4,24 +4,31 @@ import Recherche from "./Recherche";
 import React from "react";
 
 function App() {
-    const options = [
-        { val: 'P1', key: 'p1'},
-        { val: 'P2', key: 'p2'},
-        { val: 'P3', key: 'p3'},
-        { val: 'P4', key: 'p4'},
-        { val: 'P5', key: 'p5'},
-    ]
 
     const [url,setUrl] = React.useState("neo4j://localhost:7687");
+    const [protein,setProtein] = React.useState([]);
+    const [seuil,setSeuil] = React.useState([]);
 
+
+
+    const [newQ, setNewQ] = React.useState("MATCH (a:Prot)-[sim:SIMILARITE]->(b:Prot) WHERE sim.value[0] > " + seuil +" RETURN a,sim,b");
+    console.log(newQ);
     return (
         <div className="App">
             <header className="App-header">
                 <h1>Proteins graph</h1>
             </header>
             <body className="App-body">
-                <Recherche options={options} setUrl={setUrl}/>
-                <GraphVisu url={url}/>
+                <Recherche
+                    setUrl={setUrl}
+                    protein={protein}
+                    setProtein={setProtein}
+                    seuil={seuil}
+                    setSeuil={setSeuil}
+                    newQ={newQ}
+                    setNewQ={setNewQ}
+                />
+                <GraphVisu url={url} newQ={newQ}/>
             </body>
         </div>
     );

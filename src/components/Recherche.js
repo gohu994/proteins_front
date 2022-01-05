@@ -5,32 +5,32 @@ import axios from "axios";
 
 function Recherche(props) {
 
-    const [protein,setProtein] = React.useState([]);
-    const [seuil,setSeuil] = React.useState([]);
+
 
     const handleChangeProtein = (e) => {
-        props.setUrl("bolt://localhost:7687")
-        setProtein(e.target.value);
+        props.setProtein(e.target.value);
     };
 
     const handleChangeSeuil = (e) => {
-        setSeuil(e.target.value);
+        props.setSeuil(e.target.value);
     };
 
     const handleSubmitSeuil = (e) => {
-
+        console.log(props.newQ);
+        // props.setNewQ("MATCH (a:Prot)-[sim:SIMILARITE]->(b:Prot) WHERE sim.value[0] > " + props.seuil +" RETURN a,sim,b")
     }
 
     const handleSubmitResearch = (e) => {
-        e.preventDefault();
+        props.setNewQ("MATCH (a:Prot {entry: '" + props.protein + "' })-[sim:SIMILARITE]->(b:Prot) WHERE sim.value[0] > " + props.seuil +" RETURN a,sim,b")
         const protSearch = {
-            body: { name: protein },
+            body: { name: props.protein },
             headers: {
                 "Content-Type": "application/json"
             },
             method: "POST"
         };
         axios.post("http://localhost:5000/protein", protSearch)
+        handleSubmitSeuil(e);
     }
     return(
         <FormControl sx={{ m: 1, width: 800 }}>
@@ -44,7 +44,7 @@ function Recherche(props) {
                         type="text"
                         variant="standard"
                         fullWidth
-                        value={protein}
+                        value={props.protein}
                         onChange={handleChangeProtein}
                     />
                 </Grid>
@@ -57,7 +57,7 @@ function Recherche(props) {
                         type="text"
                         variant="standard"
                         fullWidth
-                        value={seuil}
+                        value={props.seuil}
                         onChange={handleChangeSeuil}
                     />
                 </Grid>

@@ -40,7 +40,7 @@ function GraphVisu(props) {
                 caption: true
             }
         },
-        initial_cypher: "MATCH (a:Prot)-[sim:SIMILARITE]->(b:Prot) RETURN a,sim,b"
+        initial_cypher: props.newQ
     };
 
     viz = new NeoVis(config2);
