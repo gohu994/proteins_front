@@ -1,6 +1,7 @@
 import '../styles/App.css';
 import GraphVisu from "./graph.js";
 import Recherche from "./Recherche";
+import Stats from "./Stats";
 import React from "react";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                     setNewQ={setNewQ}
                 />
                 <GraphVisu url={url} newQ={newQ}/>
+                <Stats newQ={newQ} />
             </body>
         </div>
     );
