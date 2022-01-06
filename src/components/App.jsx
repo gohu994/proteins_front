@@ -43,36 +43,6 @@ function App() {
             </div>
         </div>
     );
-
-    /*
-
-
-    const [newQ, setNewQ] = React.useState("MATCH (a:Prot)-[sim:SIMI]->(b:Prot) WHERE sim.value[0] > " + seuil +" RETURN a,sim,b");
-    const [viz, setViz] = React.useState({});
-
-    console.log(newQ);
-    return (
-        <div className="App">
-            <header className="App-header">
-                <h1>Proteins graph</h1>
-            </header>
-            <body className="App-body">
-                <Recherche
-                    viz
-                    setUrl={setUrl}
-                    protein={protein}
-                    setProtein={setProtein}
-                    seuil={seuil}
-                    setSeuil={setSeuil}
-                    newQ={newQ}
-                    setNewQ={setNewQ}
-                />
-                <GraphVisu setViz={setViz} url={url} newQ={newQ}/>
-                <Stats newQ={newQ} />
-            </body>
-        </div>
-    );
-    */
 }
 
 export default App;
