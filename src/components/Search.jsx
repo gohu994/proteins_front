@@ -3,22 +3,26 @@ import '../styles/Recherche.css';
 import {Select, FormControl, MenuItem, TextField, Button, Grid} from "@mui/material";
 import axios from "axios";
 
+import Loader from "react-js-loader";
+
 const Search = (props) => {
     const [protName, setProtName] = useState("");
     const [threshold, setThreshold] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
         // Call our API 
         const content = {
-            body: { name: protName },
+            body: { name: protName, seuil: threshold },
             headers: {
                 "Content-Type": "application/json"
             },
             method: "POST"
         };
 
+        setLoading(true);
         axios.post("http://localhost:5000/protein", content).then(e => {
             let query = `MATCH (a:Prot)-[sim:SIMI]->(b:Prot) WHERE sim.value[0] > ${threshold} RETURN a,sim,b`; // affichage
             props.setNewQ(query);
@@ -27,6 +31,8 @@ const Search = (props) => {
             props.vis.renderWithCypher(query);
             //props.vis.reload();
             console.log("Graph reloaded.");
+        }).finally(() => {
+            setLoading(false);
         })
     }
 
@@ -61,7 +67,8 @@ const Search = (props) => {
                 />
             </Grid>
         </Grid>
-        <Button variant="contained" className="Go" type="submit">Search</Button>
+        <Button variant="contained" className="Go" type="submit" disabled={loading} >Search</Button>
+        { loading && <Loader type="bubble-loop" bgColor={"#0000FF"} color={'#0000FF'} size={100} />}
       </form>
     );
 }

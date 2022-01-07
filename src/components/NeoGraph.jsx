@@ -48,6 +48,11 @@ const NeoGraph = (props) => {
         width: `${width}px`,
         height: `${height}px`,
         backgroundColor: `${backgroundColor}`,
+        paddingLeft: 0,
+        paddingRight: 0,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'block',
       }}
     />
   );
