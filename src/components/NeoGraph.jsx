@@ -27,8 +27,8 @@ const NeoGraph = (props) => {
         }
       },
       relationships: {
-        SIMILARITE: {
-            thickness: "count",
+        SIMI: {
+            thickness: "weight",
             caption: true
         }
       },
