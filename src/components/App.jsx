@@ -24,7 +24,18 @@ function App() {
                     setNewQ={setRequest}
                     vis={vis} // On utilise l'outil pour refresh le graph au moment voulu
                 />
-                <ResponsiveNeoGraph
+               {/* <ResponsiNeoGraphveNeoGraph
+                    viz={(childData) => {
+                        setVis(childData) // on récupère l'outil de visualisation pour l'utiliser partout
+                    }}
+                    containerId={"id0"}
+                    neo4jUri={NEO4J_URI}
+                    request={request}
+                    backgroundColor='#111111'
+                />*/ }
+                <NeoGraph
+                    width={800}
+                    height={800}
                     viz={(childData) => {
                         setVis(childData) // on récupère l'outil de visualisation pour l'utiliser partout
                     }}
@@ -33,13 +44,6 @@ function App() {
                     request={request}
                     backgroundColor='#111111'
                 />
-                { /*<NeoGraph
-                    width={400}
-                    height={300}
-                    containerId={"id1"}
-                    neo4jUri={NEO4J_URI}
-                    backgroundColor={"#b2beb5"}
-                /> */}
             </div>
         </div>
     );
