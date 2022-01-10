@@ -31,7 +31,6 @@ const Stats = (props) => {
             statistiques.labellees = e.data.numberLabelled;
             statistiques.non_labellees = e.data.numberUnlabelled;
             statistiques.pourcentage_connu = e.data.numberCompiled;
-            //statistiques.isolees = e.data;
         }).finally(() => {
             setLoading(false);
         })
@@ -41,23 +40,23 @@ const Stats = (props) => {
         <table>
            <tr>
                <td>Protéines isolées</td>
-               <td><statistiques className="isolees"></statistiques></td>
+               <td>{statistiques.isolees}</td>
            </tr>
            <tr>
                <td>Protéines liées</td>
-               <td><statistiques className="non_isolees"></statistiques></td>
+               <td>{statistiques.non_isolees}</td>
            </tr>
            <tr>
                <td>Protéines labellées</td>
-               <td><statistiques className="labellees"></statistiques></td>
+               <td>{statistiques.labellees}</td>
            </tr>
            <tr>
                <td>Protéines non labellées</td>
-               <td><statistiques className="non_labellees"></statistiques></td>
+               <td>{statistiques.non_labellees}</td>
            </tr>
            <tr>
                <td>Pourcentage protéines connus</td>
-               <td><statistiques className="pourcentage_connu"></statistiques></td>
+               <td>{statistiques.pourcentage_connu}</td>
            </tr>
            <tr>
                <td>Nombre de domaines</td>
