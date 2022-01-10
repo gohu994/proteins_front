@@ -1,6 +1,7 @@
 import '../styles/App.css';
 import { NeoGraph, ResponsiveNeoGraph } from "./NeoGraph";
 import Search from "./Search";
+import Stats from "./Stats";
 import React, { useState } from "react";
 
 
@@ -43,6 +44,8 @@ function App() {
                     neo4jUri={NEO4J_URI}
                     request={request}
                     backgroundColor='#111111'
+                />
+                <Stats
                 />
             </div>
         </div>
