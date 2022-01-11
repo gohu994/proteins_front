@@ -8,7 +8,7 @@ const NEO4J_URI = "neo4j://localhost:7687";
 
 function App() {
     const [protein,setProtein] = useState("");
-    const [request, setRequest] = useState("MATCH (a:Prot)-[sim:SIMI]->(b:Prot) RETURN a,sim,b");
+    const [request, setRequest] = useState("MATCH (a:Prot)-[sim:SIMI]->(b:Prot) RETURN a,sim,b LIMIT 40");
     const [vis, setVis] = useState({}); // On stock l'outil qui gère l'affichage des graph
 
     return (
