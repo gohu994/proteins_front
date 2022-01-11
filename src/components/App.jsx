@@ -51,7 +51,7 @@ function App() {
                 />
                 <Grid container spacing={2}>
                     <Grid item xs={10}>
-                        <NeoGraph
+                        <ResponsiveNeoGraph
                         width={1200}
                         height={900}
                         viz={(childData) => {
