@@ -41,7 +41,7 @@ const Search = (props) => {
     return (
       <form onSubmit={handleSubmit}>
         <Grid container spacing={4}>
-            <Grid item xs={9}>
+            <Grid item xs={6}>
                 <TextField
                     autoFocus
                     margin="dense"
