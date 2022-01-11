@@ -20,14 +20,6 @@ const Stats = (props) => {
                     <td>Protéines non labellées</td>
                     <td>{props.statistiques.non_labellees}</td>
                 </tr>
-                <tr>
-                    <td>Protéines connus</td>
-                    <td>{props.statistiques.pourcentage_connu}%</td>
-                </tr>
-                <tr>
-                    <td>Nombre de domaines</td>
-                    <td></td>
-                </tr>
            </tbody>
         </table>
     );

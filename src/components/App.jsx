@@ -29,8 +29,6 @@ function App() {
                 non_isolees : e.data.numberLinked,
                 labellees : e.data.numberLabelled,
                 non_labellees : e.data.numberUnlabelled,
-                pourcentage_connu : e.data.numberCompiled
-
             })
         })
       }, []);
