@@ -4,7 +4,6 @@ import {Select, FormControl, MenuItem, TextField, Button, Grid} from "@mui/mater
 import axios from "axios";
 
 const Stats = (props) => {
-    const [loading, setLoading] = useState(false);
     const statistiques = {
         isolees: 0,
         non_isolees: 0,
@@ -12,29 +11,23 @@ const Stats = (props) => {
         non_labellees: 0,
         pourcentage_connu: 0,
     }
-    const handleSubmit = (evt) => {
-        evt.preventDefault();
 
-        // Call our API 
-        const content = {
-            body: {},
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "POST"
-        };
-        setLoading(true);
-        axios.post("http://localhost:5000/stats", content).then(e => {
-            console.log("Stats done");
-            statistiques.isolees = e.data.numberIsolated;
-            statistiques.non_isolees = e.data.numberLinked;
-            statistiques.labellees = e.data.numberLabelled;
-            statistiques.non_labellees = e.data.numberUnlabelled;
-            statistiques.pourcentage_connu = e.data.numberCompiled;
-        }).finally(() => {
-            setLoading(false);
-        })
-    }
+    // Call our API 
+    const content = {
+        body: {},
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: "POST"
+    };
+    axios.post("http://localhost:5000/stats", content).then(e => {
+        console.log("Stats done");
+        statistiques.isolees = e.data.numberIsolated;
+        statistiques.non_isolees = e.data.numberLinked;
+        statistiques.labellees = e.data.numberLabelled;
+        statistiques.non_labellees = e.data.numberUnlabelled;
+        statistiques.pourcentage_connu = e.data.numberCompiled;
+    })
 
     return (
         <table>
@@ -65,3 +58,5 @@ const Stats = (props) => {
         </table>
     );
 }
+
+export default Stats;
