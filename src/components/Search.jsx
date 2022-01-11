@@ -33,6 +33,23 @@ const Search = (props) => {
             props.vis.renderWithCypher(query);
             //props.vis.reload();
             console.log("Graph reloaded.");
+            const content = {
+                body: {},
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "GET"
+            };
+            axios.get("http://localhost:5000/stats", content).then(e => {
+                props.setStatistiques({
+                    isolees : e.data.numberIsolated,
+                    non_isolees : e.data.numberLinked,
+                    labellees : e.data.numberLabelled,
+                    non_labellees : e.data.numberUnlabelled,
+                    pourcentage_connu : e.data.numberCompiled
+    
+                })
+            })
         }).finally(() => {
             setLoading(false);
         })
