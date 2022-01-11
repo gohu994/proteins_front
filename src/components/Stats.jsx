@@ -1,0 +1,36 @@
+import '../styles/Stats.css';
+
+const Stats = (props) => {
+    return (
+        <table>
+            <tbody>
+                <tr>
+                    <td>Protéines isolées</td>
+                    <td>{props.statistiques.isolees}</td>
+                </tr>
+                <tr>
+                    <td>Protéines liées</td>
+                    <td>{props.statistiques.non_isolees}</td>
+                </tr>
+                <tr>
+                    <td>Protéines labellées</td>
+                    <td>{props.statistiques.labellees}</td>
+                </tr>
+                <tr>
+                    <td>Protéines non labellées</td>
+                    <td>{props.statistiques.non_labellees}</td>
+                </tr>
+                <tr>
+                    <td>Protéines connus</td>
+                    <td>{props.statistiques.pourcentage_connu}%</td>
+                </tr>
+                <tr>
+                    <td>Nombre de domaines</td>
+                    <td></td>
+                </tr>
+           </tbody>
+        </table>
+    );
+}
+
+export default Stats;

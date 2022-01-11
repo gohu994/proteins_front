@@ -33,9 +33,35 @@ const Search = (props) => {
             props.vis.renderWithCypher(query);
             //props.vis.reload();
             console.log("Graph reloaded.");
+            const content = {
+                body: {},
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "GET"
+            };
+            axios.get("http://localhost:5000/stats", content).then(e => {
+                props.setStatistiques({
+                    isolees : e.data.numberIsolated,
+                    non_isolees : e.data.numberLinked,
+                    labellees : e.data.numberLabelled,
+                    non_labellees : e.data.numberUnlabelled,
+                    pourcentage_connu : e.data.numberCompiled
+    
+                })
+            })
         }).finally(() => {
             setLoading(false);
         })
+    }
+
+    const handleClean = (evt) => {
+        console.log(protName)
+        console.log("Cleaning graph...")
+        props.vis.reload();
+        axios.post("http://localhost:5000/clean", {}).then(e => {
+            console.log("Graph cleaned.");
+        });
     }
 
     return (
@@ -84,6 +110,7 @@ const Search = (props) => {
         </Grid>
         <Button variant="contained" className="Go" type="submit" disabled={loading} >Search</Button>
         { loading && <Loader type="bubble-loop" bgColor={"#0000FF"} color={'#0000FF'} size={100} />}
+        <Button variant="outlined" className="Go" type="reset" disabled={loading} onClick={handleClean} style={{marginLeft: "20px"}}>Clean graph</Button>
       </form>
     );
 }
