@@ -11,13 +11,13 @@ These instructions will get you a copy of the project up and running on your loc
 Just clone this project.
 
 ```
-git clone git@github.com:gohu994/bd_nosql_proteins.git
+git clone git@github.com:gohu994/proteins_front.git
 ```
 
 or
 
 ```
-git clone https://github.com/gohu994/bd_nosql_proteins.git
+git clone https://github.com/gohu994/proteins_front.git
 ```
 
 ### Installing
