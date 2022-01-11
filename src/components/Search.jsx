@@ -107,7 +107,7 @@ const Search = (props) => {
             </Grid>
         </Grid>
         <Button variant="contained" className="Go" type="submit" disabled={loading} >Search</Button>
-        <Button variant="outlined" className="Go" type="reset" disabled={loading} onClick={handleClean} style={{marginLeft: "20px"}}>Clean graph</Button>
+        <Button variant="outlined" className="Go" type="reset" disabled={loading} onClick={handleClean} style={{marginLeft: "20px"}}>Create / Clean graph</Button>
         { loading && <Loader type="bubble-loop" bgColor={"#0000FF"} color={'#0000FF'} size={100} />}
       </form>
     );
