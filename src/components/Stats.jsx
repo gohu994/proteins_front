@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import '../styles/Recherche.css';
-import {Select, FormControl, MenuItem, TextField, Button, Grid} from "@mui/material";
 import axios from "axios";
 
 const Stats = (props) => {
