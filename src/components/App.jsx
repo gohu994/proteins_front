@@ -4,7 +4,7 @@ import Search from "./Search";
 import Stats from "./Stats";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import {Select, FormControl, MenuItem, TextField, Button, Grid} from "@mui/material";
 
 const NEO4J_URI = "neo4j://localhost:7687";
 
@@ -39,7 +39,7 @@ function App() {
                 <h1>Proteins graph</h1>
             </div>
             <div>
-                <Search
+                 <Search
                     protein={protein}
                     setProtein={setProtein}
                     newQ={request}
@@ -49,6 +49,27 @@ function App() {
                         setStatistiques(e)
                     }}
                 />
+                <Grid container spacing={2}>
+                    <Grid item xs={10}>
+                        <NeoGraph
+                        width={1200}
+                        height={900}
+                        viz={(childData) => {
+                            setVis(childData) // on récupère l'outil de visualisation pour l'utiliser partout
+                        }}
+                        containerId={"id0"}
+                        neo4jUri={NEO4J_URI}
+                        request={request}
+                        backgroundColor='#111111'
+                        />
+                        
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Stats statistiques={statistiques} />
+                    </Grid>
+
+                </Grid>
+                
                {/* <ResponsiNeoGraphveNeoGraph
                     viz={(childData) => {
                         setVis(childData) // on récupère l'outil de visualisation pour l'utiliser partout
@@ -58,19 +79,7 @@ function App() {
                     request={request}
                     backgroundColor='#111111'
                 />*/ }
-                <NeoGraph
-                    width={800}
-                    height={800}
-                    viz={(childData) => {
-                        setVis(childData) // on récupère l'outil de visualisation pour l'utiliser partout
-                    }}
-                    containerId={"id0"}
-                    neo4jUri={NEO4J_URI}
-                    request={request}
-                    backgroundColor='#111111'
-                />
-                <Stats statistiques={statistiques}
-                />
+                
             </div>
         </div>
     );
