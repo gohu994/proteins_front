@@ -9,6 +9,7 @@ const Search = (props) => {
     const [protName, setProtName] = useState("");
     const [threshold, setThreshold] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [toDisplay, setToDisplay] = useState(25);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -24,8 +25,8 @@ const Search = (props) => {
         console.log(protName)
         setLoading(true);
         axios.post("http://localhost:5000/protein", content).then(e => {
-            let query = "MATCH (prot0: Prot{entry: '" + protName + "' })-[r1:SIMI]-(prot1) MATCH (prot1)-[r2:SIMI]-(prot2) RETURN prot0,prot1,prot2,r1,r2 LIMIT 15"
-            //let query = `MATCH (a:Prot)-[sim:SIMI]->(b:Prot) WHERE sim.value[0] >= ${threshold} RETURN a,sim,b LIMIT 10`; // affichage
+            let query = `MATCH (prot0: Prot{entry:  "${protName}" })-[r1:SIMI]-(prot1) MATCH (prot1)-[r2:SIMI]-(prot2) RETURN prot0,prot1,prot2,r1,r2 LIMIT ${toDisplay}`;
+            //let query = `MATCH (a:Prot)-[sim:SIMI]->(b:Prot) WHERE sim.value[0] >= ${threshold} AND sim.value[0] <= 0.5 RETURN a,sim,b LIMIT 1000`; // affichage
             props.setNewQ(query);
             props.setProtein(protName);
             console.log("Damien API DONE.");
@@ -40,7 +41,7 @@ const Search = (props) => {
     return (
       <form onSubmit={handleSubmit}>
         <Grid container spacing={4}>
-            <Grid item xs={9}>
+            <Grid item xs={6}>
                 <TextField
                     autoFocus
                     margin="dense"
@@ -65,6 +66,19 @@ const Search = (props) => {
                     fullWidth
                     value={threshold}
                     onChange={(e) => setThreshold(e.target.value) }
+                />
+            </Grid>
+            <Grid item xs={3}>
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="display"
+                    label="Display"
+                    type="text"
+                    variant="standard"
+                    fullWidth
+                    value={toDisplay}
+                    onChange={(e) => setToDisplay(e.target.value) }
                 />
             </Grid>
         </Grid>
