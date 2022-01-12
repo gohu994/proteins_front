@@ -25,7 +25,7 @@ const Search = (props) => {
         console.log(protName)
         setLoading(true);
         axios.post("http://localhost:5000/protein", content).then(e => {
-            let query = `MATCH (prot0: Prot{entry:  "${protName}" })-[r1:SIMI]-(prot1) MATCH (prot1)-[r2:SIMI]-(prot2) RETURN prot0,prot1,prot2,r1,r2 LIMIT ${toDisplay}`;
+            let query = `MATCH (prot0: Prot{entry:  "${protName}" })-[r1:SIMI]-(prot1) MATCH (prot1)-[r2:SIMI]-(prot2) WHERE r1.value[0] >= ${threshold} AND r2.value[0] >= ${threshold} RETURN prot0,prot1,prot2,r1,r2 LIMIT ${toDisplay}`;
             //let query = `MATCH (a:Prot)-[sim:SIMI]->(b:Prot) WHERE sim.value[0] >= ${threshold} AND sim.value[0] <= 0.5 RETURN a,sim,b LIMIT 1000`; // affichage
             props.setNewQ(query);
             props.setProtein(protName);
